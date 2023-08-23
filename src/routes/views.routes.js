@@ -11,6 +11,10 @@ router.get('/register', notLoggedIn, (req, res) => {
     res.render('register')
 });
 
+router.get('/profile-github', (req, res) => {
+    res.send('logged in with github')
+});
+
 router.get('/', loggedIn, (req, res) => {
     const data = {
         name: req.user.name

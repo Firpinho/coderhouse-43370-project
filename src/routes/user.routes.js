@@ -9,8 +9,5 @@ router.post('/login', notLoggedIn, passport.authenticate('login'), logged)
       .post('/register', notLoggedIn, passport.authenticate('register'), logged)
       .get('/register-github', passport.authenticate('github', {scope: ['user:email']}))
       .get('/logout', loggedIn, logout)
-      .get('/profile-github', (req, res) => {
-            res.send('logged')
-      })
 
 module.exports = router;
