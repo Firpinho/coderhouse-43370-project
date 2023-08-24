@@ -1,5 +1,5 @@
 const userServices = require('../services/user.services');
-const { loggedIn, notLoggedIn } = require('../middlewares/loggedIn')
+const { loggedIn } = require('../middlewares/loggedIn')
 
 const logged = async (req, res, next) => {
     try {
