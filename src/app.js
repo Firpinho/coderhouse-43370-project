@@ -1,6 +1,6 @@
 // DATABASE
 
-require('dotenv/config')
+require('./config')
 require('./daos/mongodb/connection'); 
 
 //  IMPORTS
@@ -23,7 +23,7 @@ const mainRouter = new MainRouter();
 
 const mongoStoreOptions = {
     store: MongoStore.create({
-      mongoUrl: process.env.MONGO_ATLAS || process.env.MONGO_LOCAL,
+      mongoUrl: config.env.MONGO_ATLAS || process.env.MONGO_LOCAL,
     }),
     secret: "1234",
     resave: false,
