@@ -1,10 +1,12 @@
+require('./config')
 const { Strategy:GithubStrategy } = require('passport-github2');
 const passport = require('passport');
+const { config } = require('dotenv');
 
 const strategyOptions = {
-    clientID: 'Iv1.a407b2c12e6dc5bd',
-    clientSecret: '66c429c2fccb59c60bc479001c9b77debb525dee',
-    callbackURL: 'http://localhost:8080/profile-github',
+    clientID: config.env.GOOGLE_CLIENT_ID,
+    clientSecret: config.env.GOOGLE_SECRET_KEY,
+    callbackURL: config.env.GOOGLE_CALLBACK_URL,
 };
 
 const registerOrLogin = async (accessToken, refreshToken, profile, done) => {

@@ -6,9 +6,9 @@ const {createHash} = require('../utils')
 const userDao = new UserDao();
 
 const strategyOptions = {
-    clientID: '881899751124-d0sd3b3uremneosvfj74l78dnv3g5682.apps.googleusercontent.com',
-    clientSecret: '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',
-    callbackURL: '/api/user/oauth2/redirect/accounts.google.com',
+    clientID: config.env.GITHUB_CLIENT_ID,
+    clientSecret: config.env.GITHUB_SECRET_KEY,
+    callbackURL: config.env.GITHUB_CALLBACK_URL,
     scope: ['profile', 'email'],
     state: true
 };
