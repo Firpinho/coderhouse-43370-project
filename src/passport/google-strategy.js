@@ -1,3 +1,4 @@
+const config = require('../config')
 const { Strategy : GoogleStrategy } = require('passport-google-oauth20');
 const passport = require('passport');
 const UserDao = require('../daos/mongodb/user.dao')
@@ -6,9 +7,9 @@ const {createHash} = require('../utils')
 const userDao = new UserDao();
 
 const strategyOptions = {
-    clientID: config.env.GITHUB_CLIENT_ID,
-    clientSecret: config.env.GITHUB_SECRET_KEY,
-    callbackURL: config.env.GITHUB_CALLBACK_URL,
+    clientID: config.GOOGLE_CLIENT_ID,
+    clientSecret: config.GOOGLE_SECRET_KEY,
+    callbackURL: config.GOOGLE_CALLBACK_URL,
     scope: ['profile', 'email'],
     state: true
 };

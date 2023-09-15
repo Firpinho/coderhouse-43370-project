@@ -1,10 +1,10 @@
 // DATABASE
 
-require('./config')
 require('./daos/mongodb/connection'); 
 
 //  IMPORTS
 
+const config = require('./config')
 const express = require('express');
 const {engine} = require('express-handlebars');
 const MainRouter = require('./routes/main.routes')
@@ -17,13 +17,13 @@ require('./passport/google-strategy');
 
 //  INITIALIZATIONS
 
-const PORT = process.env.PORT || 3000;
+const PORT = config.PORT || 3000;
 const app = express();
 const mainRouter = new MainRouter();
 
 const mongoStoreOptions = {
     store: MongoStore.create({
-      mongoUrl: config.env.MONGO_ATLAS || process.env.MONGO_LOCAL,
+      mongoUrl: config.MONGO_ATLAS || process.MONGO_LOCAL,
     }),
     secret: "1234",
     resave: false,
