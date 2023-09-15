@@ -4,7 +4,7 @@ const passport = require('passport');
 const UserDao = require('../daos/mongodb/user.dao')
 const {createHash} = require('../utils')
 
-const userDao = new UserDao();
+const userDao = new UserDao()
 
 const strategyOptions = {
     clientID: config.GOOGLE_CLIENT_ID,
