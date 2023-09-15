@@ -1,7 +1,7 @@
 const config = require('../config')
 const { Strategy : GoogleStrategy } = require('passport-google-oauth20');
 const passport = require('passport');
-const UserDao = require('../daos/mongodb/user.dao')
+const {UserDao} = require('../persistence/daos/factory')
 const {createHash} = require('../utils')
 
 const userDao = new UserDao()

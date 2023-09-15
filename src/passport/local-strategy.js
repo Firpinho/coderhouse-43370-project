@@ -1,6 +1,6 @@
 const passport = require('passport')
 const { Strategy: LocalStrategy } = require('passport-local')
-const UserDao = require('../daos/mongodb/user.dao')
+const {UserDao} = require('../persistence/daos/factory')
 const {validatePassword, createHash} = require('../utils')
 
 

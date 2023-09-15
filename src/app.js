@@ -1,6 +1,6 @@
 // DATABASE
 
-require('./daos/mongodb/connection'); 
+require('./persistence/daos/factory'); 
 
 //  IMPORTS
 

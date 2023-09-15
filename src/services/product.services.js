@@ -1,10 +1,12 @@
-const ProductDao = require('../daos/mongodb/product.dao')
+const {ProductDao} = require('../persistence/daos/factory')
+const ProductRepository = require('../persistence/repository/product/product.repository')
 
-const productDao = new ProductDao();
+const productRepository = new ProductRepository()
+
 
 const getAll = async () => {
     try {
-        return await productDao.getAll();
+        return await ProductDao.getAll();
     } catch (error) {
         return error
     }
@@ -12,7 +14,8 @@ const getAll = async () => {
 
 const getById = async (id) => {
     try {
-        return await productDao.getById(id);
+        //return await ProductDao.getById(id);
+        return await productRepository.getByIdDTO(id);
     } catch (error) {
         return error
     }
@@ -20,7 +23,7 @@ const getById = async (id) => {
 
 const create = async (obj) => {
     try {
-        return await productDao.create(obj);
+        return await ProductDao.create(obj);
     } catch (error) {
         return error
     }
@@ -28,7 +31,7 @@ const create = async (obj) => {
 
 const update = async (id, obj) => {
     try {
-        return await productDao.update(id, obj);
+        return await ProductDao.update(id, obj);
     } catch (error) {
         return error
     }
@@ -36,7 +39,7 @@ const update = async (id, obj) => {
 
 const remove = async (id) => {
     try {
-        return await productDao.delete(id);
+        return await ProductDao.delete(id);
     } catch (error) {
         return error
     }

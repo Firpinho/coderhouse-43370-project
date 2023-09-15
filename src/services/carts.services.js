@@ -1,13 +1,10 @@
-const CartDao = require('../daos/mongodb/cart.dao')
-const ProductDao = require('../daos/mongodb/product.dao')
 
-const cartDao = new CartDao();
-const productDao = new ProductDao();
+const {CartDao, ProductDao} = require('../persistence/daos/factory')
 
 
 const getById = async (id) => {
     try {
-        return await cartDao.getCart(id);
+        return await CartDao.getCart(id);
     } catch (error) {
         return error
     }
@@ -15,29 +12,29 @@ const getById = async (id) => {
 
 const create = async (obj) => {
     try {
-        return await cartDao.create(obj);        
+        return await CartDao.create(obj);        
     } catch (error) {
         return error
     }
 }
 
 const addProduct = async (cid, pid) => {
-    if(await productExists(pid)) return await cartDao.addProduct(cid, pid);
+    if(await productExists(pid)) return await CartDao.addProduct(cid, pid);
     return await productExists(pid)
 }
 
 const removeProduct = async (cid, pid) => {
-    if(await productExists(pid)) return await cartDao.removeProduct(cid, pid);
+    if(await productExists(pid)) return await CartDao.removeProduct(cid, pid);
     return await productExists(pid)
 }
 
 const updateQuantity = async (cid, pid, quantity) => {
-    if(await productExists(pid)) return await cartDao.updateQuantity(cid, pid, quantity);
+    if(await productExists(pid)) return await CartDao.updateQuantity(cid, pid, quantity);
     return await productExists(pid)
 }
 
 const update = async (id, obj) => {
-    return await cartDao.update(id, obj);      
+    return await CartDao.update(id, obj);      
 }
 
 

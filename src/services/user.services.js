@@ -1,4 +1,4 @@
-const UserDao = require('../daos/mongodb/user.dao');
+const { UserDao } = require('../persistence/daos/factory')
 
 const userDao = new UserDao();
 
