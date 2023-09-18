@@ -1,5 +1,6 @@
 const { Router } = require('express');
 
+const {loggedIn} = require('../middlewares/loggedIn')
 const userRoutes = require('./user.routes');
 const productRoutes = require('./product.routes');
 const cartRoutes = require('./cart.routes');
@@ -14,8 +15,8 @@ class MainRouter {
 
     init() {
         this.router.use('/api/user', userRoutes);
-        this.router.use('/api/products', productRoutes);
-        this.router.use('/api/cart', cartRoutes);
+        this.router.use('/api/products', loggedIn, productRoutes);
+        this.router.use('/api/cart', loggedIn, cartRoutes);
         this.router.use('/', viewsRoutes)
     }
 

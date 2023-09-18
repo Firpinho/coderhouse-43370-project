@@ -4,14 +4,13 @@
 const mongoCartDao = require("./mongodb/cart.dao");
 const mongoUserDao = require("./mongodb/user.dao");
 const mongoProductDao = require("./mongodb/product.dao");
+const mongoTicketDAO = require("./mongodb/ticket.dao")
 const { init: mongoInit } = require("./mongodb/connection");
 /**
  *
  */
 
-let ProductDao;
-let UserDao;
-let CartDao;
+let ProductDao, UserDao, CartDao, TicketDao;
 let persistence = process.argv[2];
 
 switch (persistence) {
@@ -20,6 +19,7 @@ switch (persistence) {
     ProductDao = new mongoProductDao();
     UserDao = new mongoUserDao();
     CartDao = new mongoCartDao();
+    TicketDao = new mongoTicketDAO();
     break;
   case "mysql":
         console.log('levanta con mysql')
@@ -28,9 +28,11 @@ switch (persistence) {
         console.log('levanta con fileSystem')
     break;
   default:
+    mongoInit()
     ProductDao = new mongoProductDao();
     UserDao = new mongoUserDao();
     CartDao = new mongoCartDao();
+    TicketDao = new mongoTicketDAO();
     break;
 }
 
@@ -38,5 +40,6 @@ switch (persistence) {
 module.exports = {
     ProductDao,
     UserDao,
-    CartDao
+    CartDao,
+    TicketDao
 }

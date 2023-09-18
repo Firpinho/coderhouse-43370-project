@@ -14,8 +14,7 @@ const getAll = async () => {
 
 const getById = async (id) => {
     try {
-        //return await ProductDao.getById(id);
-        return await productRepository.getByIdDTO(id);
+        return await ProductDao.getById(id);
     } catch (error) {
         return error
     }

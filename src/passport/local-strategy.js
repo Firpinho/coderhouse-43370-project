@@ -1,6 +1,6 @@
 const passport = require('passport')
 const { Strategy: LocalStrategy } = require('passport-local')
-const {UserDao} = require('../persistence/daos/factory')
+const {UserDao, CartDao} = require('../persistence/daos/factory')
 const {validatePassword, createHash} = require('../utils')
 
 const strategyOptions = {
@@ -26,7 +26,8 @@ const register = async (req, email, password, done) => {
         if(user) return done(null, false)
 
         req.body.password = createHash(password)
-        
+        req.body.cartID = await generateCart();
+
         const newUser = await UserDao.create(req.body);
         return done(null, newUser)
     } catch (error) {
@@ -59,3 +60,9 @@ passport.deserializeUser(async (id, done) => {
     const user = await UserDao.getById(id);
     return done(null, user)
 })
+
+
+const generateCart = async () => {
+    const cart = await CartDao.create()
+    return cart._id;
+}

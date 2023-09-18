@@ -1,7 +1,7 @@
 const config = require('../config')
 const { Strategy : GoogleStrategy } = require('passport-google-oauth20');
 const passport = require('passport');
-const {UserDao} = require('../persistence/daos/factory')
+const {UserDao, CartDao} = require('../persistence/daos/factory')
 const {createHash} = require('../utils')
 
 const strategyOptions = {
@@ -22,7 +22,8 @@ const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
             name: profile.displayName,
             email: profile._json.email,
             password: createHash('1234'),
-            isGoogle: true
+            isGoogle: true,
+            cartID: await generateCart()
         });
 
         return done(null, newUser)
@@ -41,3 +42,8 @@ passport.serializeUser((user, done)=>{
 passport.deserializeUser((id, done)=>{
     done(null, id);
 });
+
+const generateCart = async () => {
+    const cart = await CartDao.create()
+    return cart._id;
+}
