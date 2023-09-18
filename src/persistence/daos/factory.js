@@ -18,8 +18,8 @@ switch (persistence) {
   case "mongo":
     mongoInit()
     ProductDao = new mongoProductDao();
-    UserDao = mongoUserDao;
-    CartDao = mongoCartDao;
+    UserDao = new mongoUserDao();
+    CartDao = new mongoCartDao();
     break;
   case "mysql":
         console.log('levanta con mysql')
@@ -28,9 +28,9 @@ switch (persistence) {
         console.log('levanta con fileSystem')
     break;
   default:
-    ProductDao = mongoProductDao;
-    UserDao = mongoUserDao;
-    CartDao = mongoCartDao;
+    ProductDao = new mongoProductDao();
+    UserDao = new mongoUserDao();
+    CartDao = new mongoCartDao();
     break;
 }
 

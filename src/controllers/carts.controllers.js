@@ -4,7 +4,6 @@ const getById = async (req, res, next) => {
     try {
         const { cid } = req.params;
         const cart = await cartServices.getById(cid);
-        console.log(cart);
         if (cart) res.status(200).json(cart)
         else res.status(400).json({msg: 'No existe ningun carrito con ese ID...'})
     } catch (error) {

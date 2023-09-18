@@ -4,8 +4,6 @@ const passport = require('passport');
 const {UserDao} = require('../persistence/daos/factory')
 const {createHash} = require('../utils')
 
-const userDao = new UserDao()
-
 const strategyOptions = {
     clientID: config.GOOGLE_CLIENT_ID,
     clientSecret: config.GOOGLE_SECRET_KEY,
@@ -17,10 +15,10 @@ const strategyOptions = {
 
 const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
     try {
-        const user = await userDao.getByEmail(profile._json.email)
+        const user = await UserDao.getByEmail(profile._json.email)
         if (user) return done(null, user)
     
-        const newUser = userDao.create({
+        const newUser = UserDao.create({
             name: profile.displayName,
             email: profile._json.email,
             password: createHash('1234'),

@@ -19,7 +19,17 @@ const logout = async (req, res, next) => {
     }
 }
 
+const getCurrent = async (req, res, next) => {
+    try {
+        const user = await userServices.getCurrent(req.user._id)
+        res.status(200).json(user);
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     logged,
-    logout
+    logout,
+    getCurrent
 }

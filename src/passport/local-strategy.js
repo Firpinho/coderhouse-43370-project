@@ -3,9 +3,6 @@ const { Strategy: LocalStrategy } = require('passport-local')
 const {UserDao} = require('../persistence/daos/factory')
 const {validatePassword, createHash} = require('../utils')
 
-
-const userDao = new UserDao();
-
 const strategyOptions = {
     usernameField: 'email',
     passwordField: 'password',
@@ -14,7 +11,7 @@ const strategyOptions = {
 
 const login = async (req, email, password, done) => {
     try {
-        const user = await userDao.getByEmail(email);
+        const user = await UserDao.getByEmail(email);
         if(!user) return done(null, false);
         if(validatePassword(user, password)) return done(null, user);
         else return done(null, false)
@@ -25,12 +22,12 @@ const login = async (req, email, password, done) => {
 
 const register = async (req, email, password, done) => {
     try {
-        const user = await userDao.getByEmail(email)
+        const user = await UserDao.getByEmail(email)
         if(user) return done(null, false)
 
         req.body.password = createHash(password)
         
-        const newUser = await userDao.create(req.body);
+        const newUser = await UserDao.create(req.body);
         return done(null, newUser)
     } catch (error) {
         return done(error, false)
@@ -59,6 +56,6 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
-    const user = await userDao.getById(id);
+    const user = await UserDao.getById(id);
     return done(null, user)
 })

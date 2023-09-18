@@ -39,7 +39,7 @@ const update = async (id, obj) => {
 
 
 const productExists = async (pid) => {
-    return await productDao.getById(pid);
+    return await ProductDao.getById(pid);
 }
 
 module.exports = {
