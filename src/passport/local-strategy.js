@@ -1,7 +1,7 @@
 const passport = require('passport')
 const { Strategy: LocalStrategy } = require('passport-local')
 const {UserDao, CartDao} = require('../persistence/daos/factory')
-const {validatePassword, createHash} = require('../utils')
+const {validatePassword, createHash} = require('../utils/password-protect')
 
 const strategyOptions = {
     usernameField: 'email',

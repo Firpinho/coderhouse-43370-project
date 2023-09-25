@@ -1,6 +1,11 @@
 const userServices = require('../services/user.services');
 const { loggedIn } = require('../middlewares/loggedIn')
 
+const HttpResponse = require('../utils/http.response')
+
+const httpResponse = new HttpResponse()
+
+
 const logged = async (req, res, next) => {
     try {
         if (loggedIn) res.status(200).redirect('http://localhost:8080/')

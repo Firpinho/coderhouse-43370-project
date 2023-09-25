@@ -1,14 +1,19 @@
 const productServices = require('../services/product.services');
+const HttpResponse = require('../utils/http.response')
+const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR } = require('../utils/errors.dictionary')
+
+const httpResponse = new HttpResponse()
+
 
 const getAll = async (req, res, next) => {
     try {
         const { limit, page, sort, query } = req.query
         const products = await productServices.getAll(limit, page, sort, query);
 
-        if (products) return res.status(200).json(products);
-        else return res.status(400).json({msg: 'No hay productos aún...'})
+        if (products) return httpResponse.OK(res, products);
+        else return httpResponse.NOT_FOUND(res, GET_ALL_PRODUCTS_ERROR)
     } catch (error) {
-        next(error.message);
+        next(error);
     }
 }
 
@@ -16,10 +21,10 @@ const getById = async (req, res, next) => {
     try {
         const {id} = req.params;
         const product = await productServices.getById(id);
-        if (product) res.status(200).json(product);
-        else res.status(400).json({msg: 'No existe ningun producto con ese ID...'});
+        if (product) return httpResponse.OK(res, product);
+        else return httpResponse.NOT_FOUND(res, GET_PRODUCT_ERROR)
     } catch (error) {
-        next(error.message)
+        next(error)
     }
 }
 
@@ -27,10 +32,10 @@ const create = async (req, res, next) => {
     try {
         const newProduct = req.body;
         const createdProduct = await productServices.create(newProduct);
-        if (createdProduct) res.status(200).json(createdProduct);
-        else res.status(400).json({msg: 'Ha ocurrido un error al crear el producto...'});
+        if (createdProduct) return httpResponse.OK(res, createdProduct);
+        else return httpResponse.INTERNAL_SERVER_ERROR(res, CREATE_PRODUCT_ERROR);
     } catch (error) {
-        next(error.message)
+        next(error)
     }
 }
 
@@ -39,10 +44,10 @@ const update = async (req, res, next) => {
         const {id} = req.params;
         const obj = req.body;
         const updatedProduct = await productServices.update(id, obj);
-        if(updatedProduct) res.status(200).json(updatedProduct);
-        else res.status(400).json({msg: 'Ha ocurrido un error al actualizar los datos del producto...'});
+        if(updatedProduct) return httpResponse.OK(res, updatedProduct);
+        else return httpResponse.NOT_FOUND(res, UPDATE_PRODUCT_ERROR);
     } catch (error) {
-        next(error.message)
+        next(error)
     }
 }
 
@@ -50,10 +55,10 @@ const remove = async (req, res, next) => {
     try {
         const {id} = req.params;
         const deletedProduct = await productServices.remove(id);
-        if (deletedProduct) res.status(200).json(deletedProduct);
-        else res.status(400).json({msg: 'No hay ningun proucto con ese ID...'})
+        if (deletedProduct) return httpResponse.OK(res, deletedProduct);
+        else return httpResponse.NOT_FOUND(res, REMOVE_PRODUCT_ERROR)
     } catch (error) {
-        next(error.message)
+        next(error)
     }
 }
 

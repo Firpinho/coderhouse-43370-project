@@ -1,14 +1,17 @@
 const cartServices = require("../services/carts.services");
+const HttpResponse = require('../utils/http.response')
+const { CART_NOT_FOUND, CART_CREATE_ERROR, CART_ADD_PRODUCT_ERROR, CART_REMOVE_PRODUCT_ERROR, CART_UPDATE_QUANTITY_ERROR, CART_UPDATE_ERROR, CART_PURCHASE_ERROR } = require('../utils/errors.dictionary')
+
+const httpResponse = new HttpResponse()
 
 const getById = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const cart = await cartServices.getById(cid);
-    if (cart) res.status(200).json(cart);
-    else
-      res.status(400).json({ msg: "No existe ningun carrito con ese ID..." });
+    if (cart) return httpResponse.OK(res, cart);
+    else return httpResponse.NOT_FOUND(res, CART_NOT_FOUND)
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 
@@ -16,11 +19,10 @@ const create = async (req, res, next) => {
   try {
     const obj = req.body;
     const cart = await cartServices.create(obj);
-    if (cart) res.status(200).json(cart);
-    else
-      res.status(400).json({ msg: "No existe ningun carrito con ese ID..." });
+    if (cart) return httpResponse.OK(res, cart);
+    else return httpResponse.INTERNAL_SERVER_ERROR(res, CART_CREATE_ERROR)
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 
@@ -28,13 +30,10 @@ const addProduct = async (req, res, next) => {
   try {
     const { cid, pid } = req.params;
     const productAdded = await cartServices.addProduct(cid, pid);
-    if (!productAdded)
-      res
-        .status(400)
-        .json({ msg: "No existe ningun producto o carrito con ese ID..." });
-    else res.status(200).json(productAdded);
+    if (!productAdded) return httpResponse.NOT_FOUND(res, CART_ADD_PRODUCT_ERROR)
+    else return httpResponse.OK(res, productAdded);
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 
@@ -42,13 +41,10 @@ const removeProduct = async (req, res, next) => {
   try {
     const { cid, pid } = req.params;
     const productRemoved = await cartServices.removeProduct(cid, pid);
-    if (productRemoved) res.status(200).json(productRemoved);
-    else
-      res
-        .status(400)
-        .json({ msg: "No existe ningun producto o carrito con ese ID..." });
+    if (productRemoved) return httpResponse.OK(res, productRemoved);
+    else return httpResponse.NOT_FOUND(res, CART_REMOVE_PRODUCT_ERROR)
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 
@@ -61,13 +57,10 @@ const updateQuantity = async (req, res, next) => {
       pid,
       quantity
     );
-    if (quantityUpdated) res.status(200).json(quantityUpdated);
-    else
-      res
-        .status(400)
-        .json({ msg: "No existe ningun producto o carrito con ese ID..." });
+    if (quantityUpdated) return httpResponse.OK(res, quantityUpdated)
+    else return httpResponse.NOT_FOUND(res, CART_UPDATE_QUANTITY_ERROR)
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 
@@ -76,22 +69,20 @@ const updateCart = async (req, res, next) => {
     const { cid } = req.params;
     const obj = req.body;
     const updatedCart = await cartServices.update(cid, obj);
-    if (updatedCart) res.status(200).json(updatedCart);
-    else
-      res
-        .status(400)
-        .json({ msg: "No existe ningun producto o carrito con ese ID..." });
+    if (updatedCart) return httpResponse.OK(res, updatedCart)
+    else return httpResponse.NOT_FOUND(res, CART_UPDATE_ERROR)
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 
 const purchase = async (req, res, next) => {
   try {
-    const test = await cartServices.purchase(req.user.cartID, req.user.name);
-    res.status(200).json(test);
+    const purchase = await cartServices.purchase(req.user.cartID, req.user.name);
+    if (purchase) return httpResponse.OK(res, purchase)
+    else return httpResponse.INTERNAL_SERVER_ERROR(res, CART_PURCHASE_ERROR)
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 

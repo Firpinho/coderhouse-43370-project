@@ -2,7 +2,7 @@ const config = require('../config')
 const { Strategy : GoogleStrategy } = require('passport-google-oauth20');
 const passport = require('passport');
 const {UserDao, CartDao} = require('../persistence/daos/factory')
-const {createHash} = require('../utils')
+const {createHash} = require('../utils/password-protect')
 
 const strategyOptions = {
     clientID: config.GOOGLE_CLIENT_ID,
