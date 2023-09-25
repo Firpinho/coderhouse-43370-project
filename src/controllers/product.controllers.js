@@ -1,6 +1,6 @@
 const productServices = require('../services/product.services');
 const HttpResponse = require('../utils/http.response')
-const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR } = require('../utils/errors.dictionary')
+const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR, PRODUCT_MOCK_ERROR } = require('../utils/errors.dictionary')
 
 const httpResponse = new HttpResponse()
 
@@ -62,10 +62,21 @@ const remove = async (req, res, next) => {
     }
 }
 
+const mock = async (req, res, next) => {
+    try {
+        const products = await productServices.productMock()
+        if (products) return httpResponse.OK(res, products);
+        else return httpResponse.INTERNAL_SERVER_ERROR(res, PRODUCT_MOCK_ERROR);
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     getAll,
     getById,
     create,
     update,
-    remove
+    remove,
+    mock
 }

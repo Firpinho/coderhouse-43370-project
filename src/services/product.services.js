@@ -1,4 +1,6 @@
 const { ProductDao } = require("../persistence/daos/factory");
+const generate_product = require("../utils/product.utils")
+
 
 const getAll = async (limit, page, sort, query) => {
   try {
@@ -82,10 +84,26 @@ const remove = async (id) => {
   }
 };
 
+const productMock = async (number = 100) => {
+  try {
+      const products = []
+      for (let index = 0; index < number; index++) {
+          const product = generate_product();
+          products.push(product)
+      }        
+
+      return products
+  } catch (error) {
+      return error
+  }
+}
+
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
   remove,
+  productMock
 };

@@ -5,6 +5,7 @@ describe("Conjunto de pruebas: Servicios de productos", () => {
     //Preparacion
 
     const testProduct = {
+      _id: 'some-id',
       name: "Bluetooth Wireless Speaker",
       description:
         "Enjoy your favorite music with this portable and high-quality Bluetooth wireless speaker.",
@@ -16,6 +17,19 @@ describe("Conjunto de pruebas: Servicios de productos", () => {
       stock: 50
     };
 
+    const expectedResult = {
+      name: "Bluetooth Wireless Speaker",
+      description:
+        "Enjoy your favorite music with this portable and high-quality Bluetooth wireless speaker.",
+      price: 59.99,
+      thumbnails: [],
+      code: "SPK-BT-GRY",
+      status: true,
+      category: "Electronics",
+      stock: 50,
+      _id: 'some-id',
+      __v: 0
+    };
 
     //Ejecucion
 
@@ -23,8 +37,7 @@ describe("Conjunto de pruebas: Servicios de productos", () => {
 
     //verificacion
 
-    
-    expect(result).toBe(expectedResult);
+     expect(result).toBe(expectedResult);
   });
 
   /* it(""); */
