@@ -2,7 +2,9 @@ const productServices = require('../services/product.services');
 
 const getAll = async (req, res, next) => {
     try {
-        const products = await productServices.getAll();
+        const { limit, page, sort, query } = req.query
+        const products = await productServices.getAll(limit, page, sort, query);
+
         if (products) return res.status(200).json(products);
         else return res.status(400).json({msg: 'No hay productos aún...'})
     } catch (error) {
@@ -53,7 +55,6 @@ const remove = async (req, res, next) => {
     } catch (error) {
         next(error.message)
     }
-    
 }
 
 module.exports = {

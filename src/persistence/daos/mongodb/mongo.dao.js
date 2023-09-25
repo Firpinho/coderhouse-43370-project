@@ -4,9 +4,9 @@ class MongoDBDao {
         this.model = model;
     }
 
-    async getAll() {
+    async getAll(limit = 10, page = 1, sort, query) {
         try {
-            return await this.model.find({});
+            return await this.model.paginate(query, {page, limit, lean: true, sort: { price: Number(sort) }});
         } catch (error) {
             return error
         }
