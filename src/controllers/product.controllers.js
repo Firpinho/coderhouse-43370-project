@@ -1,6 +1,8 @@
 const productServices = require('../services/product.services');
 const HttpResponse = require('../utils/http.response')
 const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR, PRODUCT_MOCK_ERROR } = require('../utils/errors.dictionary')
+const logger = require('../utils/log.config')
+
 
 const httpResponse = new HttpResponse()
 
@@ -11,7 +13,9 @@ const getAll = async (req, res, next) => {
         const products = await productServices.getAll(limit, page, sort, query);
 
         if (products) return httpResponse.OK(res, products);
-        else return httpResponse.NOT_FOUND(res, GET_ALL_PRODUCTS_ERROR)
+        else {
+            return httpResponse.NOT_FOUND(res, GET_ALL_PRODUCTS_ERROR)
+        }
     } catch (error) {
         next(error);
     }

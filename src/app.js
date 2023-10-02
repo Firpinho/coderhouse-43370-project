@@ -16,6 +16,7 @@ require("./passport/github-strategy");
 require("./passport/google-strategy");
 const compression = require("compression");
 const errors = require('./middlewares/errors')
+const logger = require('./utils/log.config.js')
 
 
 //  INITIALIZATIONS
@@ -55,6 +56,4 @@ app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
-app.listen(PORT, () => {
-  console.log(`[SERVER] Server on port :::::: `, PORT);
-});
+app.listen(PORT, logger.info(`Server on port :::::: ${PORT}`));

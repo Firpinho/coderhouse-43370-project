@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const config = require('../../../config')
+const logger = require('../../../utils/log.config');
 
 let connection_string;
 
@@ -23,9 +24,9 @@ module.exports = {
     try {
       await mongoose
         .connect(connection_string)
-        .then(() => console.log("[SERVER] Database connected."))
+        .then(() => logger.info("Database connected."))
         .catch(() =>
-          console.log("[SERVER][ERR] Error al conectar con la base de datos.")
+          logger.error("Error al conectar con la base de datos.")
         );
     } catch (error) {
       console.log(error.message);
