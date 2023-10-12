@@ -1,6 +1,6 @@
 const productServices = require('../services/product.services');
 const HttpResponse = require('../utils/http.response')
-const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR, PRODUCT_MOCK_ERROR } = require('../utils/errors.dictionary')
+const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR, PRODUCT_MOCK_ERROR, PRODUCT_REMOVE_UNAUTH } = require('../utils/errors.dictionary')
 const logger = require('../utils/log.config')
 
 
@@ -34,9 +34,15 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
     try {
+        const isPremium = (req.user.premium) ? true : false;
         const newProduct = req.body;
+
+        if (isPremium) newProduct.owner = req.user._id 
+        else newProduct.owner = "admin";
+
         const createdProduct = await productServices.create(newProduct);
-        if (createdProduct) return httpResponse.OK(res, createdProduct);
+
+        if (createdProduct) return httpResponse.OK(res, createdProduct);  
         else return httpResponse.INTERNAL_SERVER_ERROR(res, CREATE_PRODUCT_ERROR);
     } catch (error) {
         next(error)
@@ -58,6 +64,14 @@ const update = async (req, res, next) => {
 const remove = async (req, res, next) => {
     try {
         const {id} = req.params;
+        const isPremium = (req.user.premium) ? true : false;
+
+        if(isPremium) {
+            const product = await productServices.getById(id);
+            const prouctOwner =  product.owner;
+            if(prouctOwner !== req.user._id.toString()) return httpResponse.UNAUTHORIZED(res, PRODUCT_REMOVE_UNAUTH)
+        }
+
         const deletedProduct = await productServices.remove(id);
         if (deletedProduct) return httpResponse.OK(res, deletedProduct);
         else return httpResponse.NOT_FOUND(res, REMOVE_PRODUCT_ERROR)

@@ -19,7 +19,16 @@ const getCurrent = async (id) => {
     }
 }
 
+const setPremium = async (id) => {
+    try {
+        return await UserDao.update(id, {premium: true});
+    } catch (error) {
+        return error
+    }
+}
+
 module.exports = {
     getByEmail,
-    getCurrent
+    getCurrent,
+    setPremium
 }

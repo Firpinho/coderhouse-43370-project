@@ -7,7 +7,8 @@ const userSchema = mongoose.Schema({
     role: {type: String, default: 'user'},
     isGithub: {type: Boolean, required: true, default: false},
     isGoogle: {type: Boolean, required: true, default: false},
-    cartID: {type: mongoose.Schema.Types.ObjectId, required: true}
+    cartID: {type: mongoose.Schema.Types.ObjectId, required: true},
+    premium: {type: Boolean, required: true, default: false},
 })
 
 module.exports = { UserModel : mongoose.model('users', userSchema)}

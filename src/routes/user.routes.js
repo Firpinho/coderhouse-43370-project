@@ -1,7 +1,7 @@
 const passport = require('passport')
 const { Router } = require('express');
 const { loggedIn, notLoggedIn } = require('../middlewares/loggedIn')
-const { logged, logout, getCurrent } = require('../controllers/users.controllers')
+const { logged, logout, getCurrent, setPremium, sendPasswordMail } = require('../controllers/users.controllers')
 
 const router = new Router();
 
@@ -12,5 +12,7 @@ router.post('/login', notLoggedIn, passport.authenticate('login'), logged)
       .get('/oauth2/redirect/accounts.google.com', passport.authenticate('google', { assignProperty: 'user' }), logged)
       .get('/logout', loggedIn, logout)
       .get('/current', loggedIn, getCurrent)
+      .get('/premium/:id', setPremium)
+      .post('/mail/password', sendPasswordMail)
 
 module.exports = router;

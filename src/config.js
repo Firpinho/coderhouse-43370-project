@@ -11,5 +11,9 @@ module.exports = {
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_SECRET_KEY: process.env.GOOGLE_SECRET_KEY,
     GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL,
-    PORT: process.env.PORT
+    PORT: process.env.PORT,
+    MAIL_HOST: process.env.MAIL_HOST,
+    MAIL_PORT: process.env.MAIL_PORT,
+    MAIL_USER: process.env.MAIL_USER,
+    MAIL_PASS: process.env.MAIL_PASS,
 }

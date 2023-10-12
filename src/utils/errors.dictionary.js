@@ -12,4 +12,5 @@ module.exports = {
     UPDATE_PRODUCT_ERROR: "No existe ningun producto con ese ID.",
     REMOVE_PRODUCT_ERROR: "No existe ningun producto con ese ID.",
     PRODUCT_MOCK_ERROR: "Ha ocurrido un error al generar los productos.",
+    PRODUCT_REMOVE_UNAUTH: "No puedes eliminar este producto."
 }

@@ -11,7 +11,7 @@ const development_config = {
     format.simple(),
     format.timestamp({ format: "DD-MM-YYYY HH:mm:ss" }),
     format.printf(
-      (info) => `[${info.level}] - ${info.message} | Date ........: ${info.timestamp}`
+      (info) => `[${info.level}] | ${info.timestamp} => ${info.message}`
     )
   ),
 };
@@ -32,7 +32,7 @@ const production_config = {
     format.simple(),
     format.timestamp({ format: "DD-MM-YYYY HH:mm:ss" }),
     format.printf(
-      (info) => `[${info.level}] - ${info.message} | Date ........: ${info.timestamp}`
+      (info) => `[${info.level}] | ${info.timestamp} => ${info.message}`
     )
   ),
 };
