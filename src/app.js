@@ -15,9 +15,9 @@ require("./passport/local-strategy");
 require("./passport/github-strategy");
 require("./passport/google-strategy");
 const compression = require("compression");
-const errors = require('./middlewares/errors')
-const logger = require('./utils/log.config.js')
-
+const errors = require("./middlewares/errors");
+const logger = require("./utils/log.config.js");
+const cookieParser = require("cookie-parser");
 
 //  INITIALIZATIONS
 
@@ -42,6 +42,7 @@ const mongoStoreOptions = {
 app
   .use(compression({ threshold: 0 }))
   .use(express.json())
+  .use(cookieParser(config.SECRET_COOKIES))
   .use(express.urlencoded({ extended: true }))
   .use(express.static(__dirname + "/public"))
   .use(session(mongoStoreOptions))

@@ -1,12 +1,15 @@
 const userServices = require("../services/user.services");
-const { transporter, mailOptions } = require("../services/email.services");
 const { loggedIn } = require("../middlewares/loggedIn");
 
 const HttpResponse = require("../utils/http.response");
 const logger = require("../utils/log.config");
 const { transport } = require("winston");
 
+
+
+
 const httpResponse = new HttpResponse();
+
 
 const logged = async (req, res, next) => {
   try {
@@ -45,30 +48,38 @@ const setPremium = async (req, res, next) => {
   }
 };
 
-const sendPasswordMail = async (req, res, next) => {
+const resetPasswordMail = async (req, res, next) => {
   try {
     const { mail } = req.body;
-    const userExists = await userServices.getByEmail(mail);
-
-    if (userExists) {
-      mailOptions.to = mail;
-      const response = await transporter.sendMail(mailOptions);
-      logger.info(`target mail :::::: ${mail}`);
-      logger.info("mail enviado");
-      res.json(response);
-    }
-
-    return httpResponse.NOT_FOUND(res, `No existe ningun usuario con este mail.`);
+    const token = await userServices.resetPassword(mail);
+    
+    if (!token) return httpResponse.NOT_FOUND(res, `No se ha podido enviar el mail.`);
+    
+    res.cookie('passwordtoken', token)
+    return httpResponse.OK(res, token);
 
   } catch (error) {
     next(error);
   }
 };
 
+const updatePassword = async (req, res, next) => {
+  try { 
+    const user = req.userID
+    const { password } = req.body;
+    const updatedUser = await userServices.updatePassword(user, password);
+    if (updatedUser) return httpResponse.OK(res, updatedUser);
+    else return httpResponse.INTERNAL_SERVER_ERROR(res, `Ha ocurrido un error al cambiar la contraseña`)
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   logged,
   logout,
   getCurrent,
   setPremium,
-  sendPasswordMail,
+  resetPasswordMail,
+  updatePassword
 };

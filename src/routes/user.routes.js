@@ -1,7 +1,8 @@
 const passport = require('passport')
 const { Router } = require('express');
 const { loggedIn, notLoggedIn } = require('../middlewares/loggedIn')
-const { logged, logout, getCurrent, setPremium, sendPasswordMail } = require('../controllers/users.controllers')
+const { logged, logout, getCurrent, setPremium, resetPasswordMail, updatePassword } = require('../controllers/users.controllers');
+const checkLink = require('../middlewares/expired-link-handler');
 
 const router = new Router();
 
@@ -13,6 +14,7 @@ router.post('/login', notLoggedIn, passport.authenticate('login'), logged)
       .get('/logout', loggedIn, logout)
       .get('/current', loggedIn, getCurrent)
       .get('/premium/:id', setPremium)
-      .post('/mail/password', sendPasswordMail)
+      .post('/mail/password', resetPasswordMail)
+      .get('/updatePassword', checkLink, updatePassword)
 
 module.exports = router;
