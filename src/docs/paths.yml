@@ -1,0 +1,136 @@
+paths: 
+  /api/products: 
+    get:
+      tags:
+      - Productos
+      summary: Obtener todos los productos registrados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Product'
+        required: true
+      responses:
+        200:
+          description: Productos obtenidos con exito.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/getAll'
+        404: 
+          description: No existen productos registrados.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/noProducts'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/serverError'
+    post:
+      tags:
+      - Productos
+      summary: Registrar un nuevo producto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Product'
+        required: true
+      responses:
+        200:
+          description: Producto creado con exito.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/create'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/serverError'
+  /api/products/{id}: 
+    get:
+      tags:
+      - Productos
+      summary: Obtener producto por ID unico
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Product'
+        required: true
+      responses:
+        200:
+          description: Producto obtenido con exito.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/getById'
+        404: 
+          description: No existe un producto con ese ID.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/notFound'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/serverError'
+    put:
+      tags:
+      - Productos
+      summary: Modificar un producto existente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/ModifiedProduct'
+        required: true
+      responses:
+        200:
+          description: Producto modificado con exito.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/update'
+        404: 
+          description: No existe un producto con ese ID.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/notFound'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/serverError'
+    delete:
+      tags:
+      - Productos
+      summary: Eliminar un producto
+      responses:
+        200:
+          description: Producto eliminado con exito.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/delete'
+        404: 
+          description: No existe un producto con ese ID.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/notFound'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Product/serverError'

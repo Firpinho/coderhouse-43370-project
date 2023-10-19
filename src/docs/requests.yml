@@ -1,0 +1,60 @@
+components:
+  parameters:
+    schemas:
+      Product:
+        type: Object
+        required:
+          - name
+          - description
+          - price
+          - category
+          - stock
+        properties:
+          name:
+            type: String
+            description: Nombre del producto
+          description:
+            type: String
+            description: Descripcion breve del producto
+          price:
+            type: Int
+            description: Precio del producto
+          thumbnails:
+            type: Array
+            description: Array con rutas de las imagenes descriptivas del producto
+            items:
+              type: String
+              description: URL de imagen
+          code:
+            type: String
+            description: Codigo unico del producto
+          status:
+            type: Boolean
+            description: Si el estado del producto es "true" este será listado si de lo contrario se encuentra en "false" este no se listará
+          category:
+            type: String
+            description: Categoria del prodcto
+          stock:
+            type: Int
+            description: Cantidad de productos en stock
+        example:
+          name: Gaming Mouse
+          description: Enhance your gaming experience with this ergonomic and high-precision gaming mouse.
+          price: 34
+          thumbnails: []
+          code: MOUSE-GM-RED
+          status: true
+          category: Electronics
+          stock: 15
+      ModifiedProduct:
+        type: Object
+        required:
+          - name
+        properties:
+          name:
+            type: String
+            description: Nombre del producto
+        example:
+          name: Gaming Mouse (Color Red)
+
+      

@@ -18,12 +18,16 @@ const compression = require("compression");
 const errors = require("./middlewares/errors");
 const logger = require("./utils/log.config.js");
 const cookieParser = require("cookie-parser");
+const swaggerUI = require("swagger-ui-express");
+const swaggerJSDoc = require("swagger-jsdoc");
+const { info } = require("./docs/info");
 
 //  INITIALIZATIONS
 
 const PORT = config.PORT || 3000;
 const app = express();
 const mainRouter = new MainRouter();
+const specs = swaggerJSDoc(info);
 
 const mongoStoreOptions = {
   store: MongoStore.create({
@@ -43,13 +47,14 @@ app
   .use(compression({ threshold: 0 }))
   .use(express.json())
   .use(cookieParser(config.SECRET_COOKIES))
+  .use("/docs", swaggerUI.serve, swaggerUI.setup(specs))
   .use(express.urlencoded({ extended: true }))
   .use(express.static(__dirname + "/public"))
   .use(session(mongoStoreOptions))
   .use(passport.initialize())
   .use(passport.session())
   .use("/", mainRouter.getRouter())
-  .use(errors)
+  .use(errors);
 
 //  VIEWENGINE
 

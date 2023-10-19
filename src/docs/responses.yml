@@ -1,0 +1,383 @@
+components:
+  schema:
+    Product:
+      create:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data:
+            type: Object
+            description: resultado de la solicitud HTTP
+            properties:
+              name:
+                type: String
+                description: Nombre del producto
+              description:
+                type: String
+                description: Descripcion breve del producto
+              price:
+                type: Int
+                description: Precio del producto
+              thumbnails:
+                type: Array
+                description: Array con rutas de las imagenes descriptivas del producto
+              code:
+                type: String
+                description: Codigo unico del producto
+              status:
+                type: Boolean
+                description: Si el estado del producto es "true" este será listado si de lo contrario se encuentra en "false" este no se listará
+              category:
+                type: String
+                description: Categoria del prodcto
+              stock:
+                type: Int
+                description: Cantidad de productos en stock
+              owner:
+                type: String
+                description: Identificador del usuario que ha creado el producto
+              _id:
+                type: String
+                description: Identidicador del producto
+        example:
+          status: 200
+          message: Success
+          data:
+            name: Gaming Mouse
+            description: Enhance your gaming experience with this ergonomic and high-precision gaming mouse.
+            price: 34
+            thumbnails: []
+            code: MOUSE-GM-RED
+            status: true
+            category: Electronics
+            stock: 15
+            owner: admin
+            _id: 653064047ba6a074c7f60503
+      getAll:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data: 
+            type: Object
+            properties:
+              status:
+                type: String
+                description: Estado de solicitud a la base de datos
+              payload: 
+                type: Array
+                description: Productos encontrados
+                items:
+                  properties:
+                    name:
+                      type: String
+                      description: Nombre del producto
+                    description:
+                      type: String
+                      description: Descripcion breve del producto
+                    price:
+                      type: Int
+                      description: Precio del producto
+                    thumbnails:
+                      type: Array
+                      description: Array con rutas de las imagenes descriptivas del producto
+                    code:
+                      type: String
+                      description: Codigo unico del producto
+                    status:
+                      type: Boolean
+                      description: Si el estado del producto es "true" este será listado si de lo contrario se encuentra en "false" este no se listará
+                    category:
+                      type: String
+                      description: Categoria del prodcto
+                    stock:
+                      type: Int
+                      description: Cantidad de productos en stock
+                    owner:
+                      type: String
+                      description: Identificador del usuario que ha creado el producto
+                    _id:
+                      type: String
+                      description: Identidicador del producto
+              totalPages:
+                type: Int
+                description: Total de paginas del listado de productos
+              prevPage:
+                type: Int
+                description: Numero de la pagina anterior
+              nextPage:
+                type: Int
+                description: Numero de la pagina siguiente
+              page: 
+                type: Int
+                description: Numero de la pagina actual
+              hasPrevPage:
+                type: Boolean
+                description: Indica si hay una pagina previa a la actual
+              hasNextPage:
+                type: Boolean
+                description: Indica si hay una pagina siguiente a la actual
+              prevLink:
+                type: String
+                description: Link de la pagina anterior
+              nextLink:
+                type: String
+                description: Link de la pagina siguiente
+        example:
+          status: 200
+          message: Success
+          data: 
+            status: success
+            payload:
+              - _id: 653064047ba6a074c7f60503
+                name: Gaming Mouse
+                description: Enhance your gaming experience with this ergonomic and high-precision gaming mouse.
+                price: 34
+                thumbnails: []
+                code: MOUSE-GM-RED
+                status: true
+                category: Electronics
+                stock: 15
+                owner: admin
+                id: 653064047ba6a074c7f60503
+            totalPages: 1
+            prevPage: null
+            nextPage: null
+            page: 1
+            hasPrevPage: false
+            hasNextPage: false
+            prevLink: null
+            nextLink: null
+      getById:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data: 
+            description: resultado de la solicitud HTTP
+            properties:
+              _id:
+                type: String
+                description: Identidicador del producto
+              name:
+                type: String
+                description: Nombre del producto
+              description:
+                type: String
+                description: Descripcion breve del producto
+              price:
+                type: Int
+                description: Precio del producto
+              thumbnails:
+                type: Array
+                description: Array con rutas de las imagenes descriptivas del producto
+              code:
+                type: String
+                description: Codigo unico del producto
+              status:
+                type: Boolean
+                description: Si el estado del producto es "true" este será listado si de lo contrario se encuentra en "false" este no se listará
+              category:
+                type: String
+                description: Categoria del prodcto
+              stock:
+                type: Int
+                description: Cantidad de productos en stock
+              owner:
+                type: String
+                description: Identificador del usuario que ha creado el producto
+        example:
+          status: 200
+          message: Success
+          data:
+            _id: 653064047ba6a074c7f60503
+            name: Gaming Mouse
+            description: Enhance your gaming experience with this ergonomic and high-precision gaming mouse.
+            price: 34
+            thumbnails: []
+            code: MOUSE-GM-RED
+            status: true
+            category: Electronics
+            stock: 15
+            owner: admin
+      update:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data: 
+            description: resultado de la solicitud HTTP
+            properties:
+              _id:
+                type: String
+                description: Identidicador del producto
+              name:
+                type: String
+                description: Nombre del producto
+              description:
+                type: String
+                description: Descripcion breve del producto
+              price:
+                type: Int
+                description: Precio del producto
+              thumbnails:
+                type: Array
+                description: Array con rutas de las imagenes descriptivas del producto
+              code:
+                type: String
+                description: Codigo unico del producto
+              status:
+                type: Boolean
+                description: Si el estado del producto es "true" este será listado si de lo contrario se encuentra en "false" este no se listará
+              category:
+                type: String
+                description: Categoria del prodcto
+              stock:
+                type: Int
+                description: Cantidad de productos en stock
+              owner:
+                type: String
+                description: Identificador del usuario que ha creado el producto        
+        example:
+          status: 200
+          message: Success
+          data:
+            _id: 653064047ba6a074c7f60503
+            name: Gaming Mouse (Color Red)
+            description: Enhance your gaming experience with this ergonomic and high-precision gaming mouse.
+            price: 34
+            thumbnails: []
+            code: MOUSE-GM-RED
+            status: true
+            category: Electronics
+            stock: 15
+            owner: admin          
+      delete:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data: 
+            description: resultado de la solicitud HTTP
+            properties:
+              _id:
+                type: String
+                description: Identidicador del producto
+              name:
+                type: String
+                description: Nombre del producto
+              description:
+                type: String
+                description: Descripcion breve del producto
+              price:
+                type: Int
+                description: Precio del producto
+              thumbnails:
+                type: Array
+                description: Array con rutas de las imagenes descriptivas del producto
+              code:
+                type: String
+                description: Codigo unico del producto
+              status:
+                type: Boolean
+                description: Si el estado del producto es "true" este será listado si de lo contrario se encuentra en "false" este no se listará
+              category:
+                type: String
+                description: Categoria del prodcto
+              stock:
+                type: Int
+                description: Cantidad de productos en stock
+              owner:
+                type: String
+                description: Identificador del usuario que ha creado el producto        
+        example:
+          status: 200
+          message: Success
+          data:
+            _id: 653064047ba6a074c7f60503
+            name: Gaming Mouse (Color Red)
+            description: Enhance your gaming experience with this ergonomic and high-precision gaming mouse.
+            price: 34
+            thumbnails: []
+            code: MOUSE-GM-RED
+            status: true
+            category: Electronics
+            stock: 15
+            owner: admin      
+      notFound:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 404
+          message: Not found
+          error: No existe ningun producto con ese ID. 
+      noProducts:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 404
+          message: Not found
+          error: Por el momento no hay productos.
+      serverError:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 500
+          message: Server internal error
+          error: Ha ocurrido un error por nuestra parte.
+
+
+
+
+
+
+
+
