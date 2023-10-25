@@ -56,5 +56,68 @@ components:
             description: Nombre del producto
         example:
           name: Gaming Mouse (Color Red)
+      Cart: 
+        type: Object
+        required:
+          - product
+        properties:
+          products:
+            type: Array
+            items:
+              properties:
+                product: 
+                  type: String
+                  description: ID del producto
+                quantity:
+                  type: Int
+                  description: Cantidad de productos
+        example:
+          products:
+            - product: 653064047ba6a074c7f60503
+              quantity: 1
+      User:
+        type: Object
+        required:
+          - name
+          - email
+          - password
+          - role
+          - isGithub
+          - isGoogle
+          - cartID
+          - permium
+        properties:
+          name:
+            type: String
+            description: Nombre del usuario
+          email:
+            type: String
+            description: Email del usuario
+          password:
+            type: String
+            description: Contraseña hasheada del usuario
+          role: 
+            type: String
+            description: Rol del usuario dentro de la aplicacion
+          isGithub:
+            type: Boolean
+            description: Indicador del usuario de github
+          isGoogle:
+            type: Boolean
+            description: Indicador del usuario de google
+          cartID:
+            type: String
+            description: ID del carrito del usuario
+          permium: 
+            type: Boolean
+            description: Indicador de usuario premium
+        example:
+          name: Jhon Doe
+          email: jhondoe@gmail.com
+          password: $2b$10$1IM3HfLiKa.Z8yFSQAIiT.fXGx4BbftjPfyzVoWtFpE/PfEcogz4K
+          role: user
+          isGithub: false
+          isGoogle: false
+          cartID: 6514c34d05f688a0c576a38c
+          premium: false
 
-      

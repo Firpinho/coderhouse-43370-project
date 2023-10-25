@@ -157,7 +157,7 @@ components:
             hasNextPage: false
             prevLink: null
             nextLink: null
-      getById:
+      getByID:
         type: Object
         properties:
           status:
@@ -373,11 +373,530 @@ components:
           status: 500
           message: Server internal error
           error: Ha ocurrido un error por nuestra parte.
-
-
-
-
-
-
+    Cart:
+      getByID:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data: 
+            type: Object     
+            description: resultado de la solicitud HTTP 
+            properties: 
+              _id: 
+                type: String
+                description: ID del carrito
+              products: 
+                type: Array
+                description: Productos del carrito
+                items:
+                  properties:
+                    name:
+                      type: String
+                      description: Nombre del producto
+                    description:
+                      type: String
+                      description: Descripcion breve del producto
+                    price:
+                      type: Int
+                      description: Precio del producto
+                    thumbnails:
+                      type: Array
+                      description: Array con rutas de las imagenes descriptivas del producto
+                    code:
+                      type: String
+                      description: Codigo unico del producto
+                    status:
+                      type: Boolean
+                      description: Si el estado del producto es "true" este será listado si de lo contrario se encuentra en "false" este no se listará
+                    category:
+                      type: String
+                      description: Categoria del prodcto
+                    stock:
+                      type: Int
+                      description: Cantidad de productos en stock
+                    owner:
+                      type: String
+                      description: Identificador del usuario que ha creado el producto
+                    _id:
+                      type: String
+                      description: Identidicador del producto
+        example:
+          status: 200
+          message: success
+          data: 
+            _id: 6512df40990a1622de2490eb
+            products:
+              - _id: 653064047ba6a074c7f60503
+                name: Gaming Mouse
+                description: Enhance your gaming experience with this ergonomic and high-precision gaming mouse.
+                price: 34
+                thumbnails: []
+                code: MOUSE-GM-RED
+                status: true
+                category: Electronics
+                stock: 15
+                owner: admin
+      create:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data:
+            type: Object
+            description: resultado de la solicitud HTTP
+            properties: 
+              _id: 
+                type: String
+                description: ID del carrito
+              products: 
+                type: Array
+                description: Productos del carrito
+        example:
+          status: 200
+          message: success
+          data: 
+            _id: 65397ac3edc7478632044340
+            products: []
+      updateCart:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data:
+            type: Object
+            description: resultado de la solicitud HTTP
+            properties: 
+              _id: 
+                type: String
+                description: ID del carrito
+              products: 
+                type: Array
+                description: Productos del carrito
+                items: 
+                  properties:
+                    _id: 
+                      type: String
+                      description: ID del producto
+                    quantity: 
+                      type: Int
+                      description: Cantidad de productos
+        example: 
+          status: 200
+          message: success
+          data:
+            _id: 65397ac3edc7478632044340
+            products:
+              - product: 653064047ba6a074c7f60503
+                quantity: 1
+      addProduct:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data:
+            type: Object
+            description: resultado de la solicitud HTTP
+            properties: 
+              _id: 
+                type: String
+                description: ID del carrito
+              products: 
+                type: Array
+                description: Productos del carrito
+                items: 
+                  properties:
+                    _id: 
+                      type: String
+                      description: ID del producto
+                    quantity: 
+                      type: Int
+                      description: Cantidad de productos
+        example: 
+          status: 200
+          message: success
+          data:
+            _id: 65397ac3edc7478632044340
+            products:
+              - product: 653064047ba6a074c7f60503
+                quantity: 2
+      removeProduct:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data:
+            type: Object
+            description: resultado de la solicitud HTTP
+            properties: 
+              _id: 
+                type: String
+                description: ID del carrito
+              products: 
+                type: Array
+                description: Productos del carrito
+                items: 
+                  properties:
+                    _id: 
+                      type: String
+                      description: ID del producto
+                    quantity: 
+                      type: Int
+                      description: Cantidad de productos
+        example: 
+          status: 200
+          message: success
+          data:
+            _id: 65397ac3edc7478632044340
+            products:
+              - product: 653064047ba6a074c7f60503
+                quantity: 1
+      updateQuantity:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data:
+            type: Object
+            description: resultado de la solicitud HTTP
+            properties: 
+              _id: 
+                type: String
+                description: ID del carrito
+              products: 
+                type: Array
+                description: Productos del carrito
+                items: 
+                  properties:
+                    _id: 
+                      type: String
+                      description: ID del producto
+                    quantity: 
+                      type: Int
+                      description: Cantidad de productos
+        example: 
+          status: 200
+          message: success
+          data:
+            _id: 65397ac3edc7478632044340
+            products:
+              - product: 653064047ba6a074c7f60503
+                quantity: 5
+      purchase:
+        type: Object
+        properties: 
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data:
+            type: Object
+            description: resultado de la solicitud HTTP
+            properties: 
+              ticket:
+                type: Object
+                description: Ticket de compra
+                properties:
+                  code:
+                    type: String
+                    description: Codigo del ticket de compra
+                  purchase_datetime:
+                    type: Date
+                    description: Fecha y hora de la compra
+                  amount:
+                    type: Int
+                    description: Monto total de la compra
+                  purchaser:
+                    type: String
+                    description: Nombre del comprador
+                  _id: 
+                    type: String
+                    description: ID del ticket
+              no_stock:
+                type: Array
+                description: Array con los productos que no pudieron ser comprados por falta de disponibilidad
+        example:
+          status: 200
+          message: success
+          data:
+            ticket:
+              code: '#T-65398b62edc7478632044373'
+              purchase_datetime: 2023-10-25T14:26:23.668Z
+              amount: 276
+              purchaser: Jhon Doe
+              _id: 65398b62edc7478632044373
+            no_stock: []
+      notFound:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 404
+          message: Not found
+          error: No existe ningun carrito con ese ID. 
+      notFoundAddProduct:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 404
+          message: Not found
+          error: No existe ningun carrito o producto con ese ID. 
+      serverError:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 500
+          message: Server internal error
+          error: Ha ocurrido un error por nuestra parte.
+    User:
+      getCurrent:
+        type: Object
+        properties:
+          nombre: 
+            type: String
+            description: Nombre del usuario
+          email:
+            type: String
+            description: Email del usuario
+          tipo: 
+            type: String
+            description: Tipo de usuario
+          premium:
+            type: Boolean
+            description: Indicador de usuario premium
+          carrito:
+            type: String
+            description: ID del carrito del usuario
+        example:
+          nombre: Jhon Doe
+          email: jhondoe@gmail.com
+          tipo: user
+          premium: false
+          carrito: 6512df40990a1622de2490eb
+      setPremium:
+        type: Object
+        properties:
+          _id: 
+            type: String
+            description: ID del usuario
+          name: 
+            type: String
+            description: Nombre del usuario
+          email: 
+            type: String
+            description: Email del usuario
+          password:
+            type: String
+            description: Contraseña hasheada del usuario
+          role:
+            type: String
+            description: Rol del usuario dentro de la aplicacion
+          isGithub:
+            type: Boolean
+            description: Indicador de usuario de github
+          isGoogle:
+            type: Boolean
+            description: Indicador de usuario de google
+          cartID: 
+            type: String
+            description: ID del carrito del usuairo
+          premium: 
+            type: Boolean
+            description: Indicador de usuario permium
+        example:
+          _id: 6512df40990a1622de2490ed
+          name: Jhon Doe
+          email: jhondoe@gmail.com
+          password: $2b$10$1IM3HfLiKa.Z8yFSQAIiT.fXGx4BbftjPfyzVoWtFpE/PfEcogz4K
+          role: user
+          isGithub: false
+          isGoogle: false
+          cartID: 6512df40990a1622de2490eb
+          premium: true
+      resetPasswordMail:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data: 
+            type: String     
+            description: resultado de la solicitud HTTP 
+        example:
+          status: 200
+          message: success
+          data: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1MTJkZjQwOTkwYTE2MjJkZTI0OTBlZCIsIm5hbWUiOiJHYXN0b24gRmlycG8iLCJlbWFpbCI6Im1lZGljZW5maXJwaXRvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJDFJTTNIZkxpS2EuWjh5RlNRQUlpVC5mWEd4NEJiZnRqUGZ5elZvV3RGcEUvUGZFY29nejRLIiwicm9sZSI6InVzZXIiLCJpc0dpdGh1YiI6ZmFsc2UsImlzR29vZ2xlIjpmYWxzZSwiY2FydElEIjoiNjUxMmRmNDA5OTBhMTYyMmRlMjQ5MGViIiwiX192IjowLCJwcmVtaXVtIjp0cnVlfSwiaWF0IjoxNjk4MjcyMTk4LCJleHAiOjE2OTgyNzU3OTh9.XMUwHQeb_CcPUD1UBw1YAR1cnQNmkgaoijB1hovkOLI
+      updatePassword:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          data: 
+            type: Object     
+            description: resultado de la solicitud HTTP 
+            properties:
+              _id: 
+                type: String
+                description: ID del usuario
+              name: 
+                type: String
+                description: Nombre del usuario
+              email: 
+                type: String
+                description: Email del usuario
+              password:
+                type: String
+                description: Contraseña hasheada del usuario
+              role:
+                type: String
+                description: Rol del usuario dentro de la aplicacion
+              isGithub:
+                type: Boolean
+                description: Indicador de usuario de github
+              isGoogle:
+                type: Boolean
+                description: Indicador de usuario de google
+              cartID: 
+                type: String
+                description: ID del carrito del usuairo
+              premium: 
+                type: Boolean
+                description: Indicador de usuario permium
+        example:
+          status: 200
+          message: success
+          data: 
+            _id: 6512df40990a1622de2490ed
+            name: Jhon Doe
+            email: jhondoe@gmail.com
+            password: $2b$10$1BLyR0ngPz3WySu5ooT9/uKGPiwAAFIX5cgMdFrm65HFGCPuCWNO2
+            role: user
+            isGithub: false
+            isGoogle: false
+            cartID: 6512df40990a1622de2490eb
+            premium: true
+      notFound:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 404
+          message: Not found
+          error: No existe ningun usuario con ese ID. 
+      forbidden:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 403
+          message: Forbidden
+          error: El link ha expirado. 
+      notFoundMail:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 404
+          message: Not found
+          error: No se ha podido enviar el mail. 
+      serverError:
+        type: Object
+        properties:
+          status:
+            type: Int
+            description: Estado de la solicitud HTTP
+          message:
+            type: String
+            description: resumen de estado de la solicitud HTTP
+          error:
+            type: String
+            description: Mensaje de error
+        example:
+          status: 500
+          message: Server internal error
+          error: Ha ocurrido un error por nuestra parte.
 
 

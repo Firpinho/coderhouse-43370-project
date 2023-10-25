@@ -1,76 +1,43 @@
-[info] | 18-10-2023 19:37:35 => Server on port :::::: 8080
-[info] | 18-10-2023 19:37:36 => Database connected.
-[info] | 18-10-2023 19:41:54 => Server on port :::::: 8080
-[info] | 18-10-2023 19:41:55 => Database connected.
-[info] | 18-10-2023 19:43:30 => Server on port :::::: 8080
-[info] | 18-10-2023 19:43:31 => Database connected.
-[info] | 18-10-2023 19:55:44 => Server on port :::::: 8080
-[info] | 18-10-2023 19:55:45 => Database connected.
-[info] | 18-10-2023 20:00:40 => Server on port :::::: 8080
-[info] | 18-10-2023 20:00:40 => Database connected.
-[info] | 18-10-2023 20:02:13 => Un usuario está intentando entrar a su cuenta.
-[info] | 18-10-2023 20:02:13 => Usuario logeado con exito.
-[info] | 18-10-2023 20:05:57 => Server on port :::::: 8080
-[info] | 18-10-2023 20:05:58 => Database connected.
-[info] | 18-10-2023 20:24:20 => Server on port :::::: 8080
-[info] | 18-10-2023 20:24:23 => Database connected.
-[info] | 18-10-2023 20:24:49 => Server on port :::::: 8080
-[info] | 18-10-2023 20:24:50 => Database connected.
-[info] | 18-10-2023 20:25:03 => Server on port :::::: 8080
-[info] | 18-10-2023 20:25:04 => Database connected.
-[info] | 18-10-2023 20:25:45 => Server on port :::::: 8080
-[info] | 18-10-2023 20:25:46 => Database connected.
-[info] | 18-10-2023 20:28:39 => Server on port :::::: 8080
-[info] | 18-10-2023 20:28:40 => Database connected.
-[info] | 18-10-2023 20:29:38 => Server on port :::::: 8080
-[info] | 18-10-2023 20:29:38 => Database connected.
-[info] | 18-10-2023 21:19:12 => Un usuario está intentando entrar a su cuenta.
-[info] | 18-10-2023 21:19:12 => Usuario logeado con exito.
-[info] | 18-10-2023 21:22:28 => Server on port :::::: 8080
-[info] | 18-10-2023 21:22:29 => Database connected.
-[info] | 18-10-2023 21:22:50 => Server on port :::::: 8080
-[info] | 18-10-2023 21:22:51 => Database connected.
-[info] | 18-10-2023 21:25:10 => Server on port :::::: 8080
-[info] | 18-10-2023 21:25:12 => Database connected.
-[info] | 18-10-2023 21:27:31 => Server on port :::::: 8080
-[info] | 18-10-2023 21:27:32 => Database connected.
-[info] | 18-10-2023 21:29:21 => Server on port :::::: 8080
-[info] | 18-10-2023 21:29:22 => Database connected.
-[info] | 18-10-2023 21:31:23 => Server on port :::::: 8080
-[info] | 18-10-2023 21:31:24 => Database connected.
-[info] | 18-10-2023 21:34:19 => Server on port :::::: 8080
-[info] | 18-10-2023 21:34:20 => Database connected.
-[info] | 18-10-2023 21:36:08 => Server on port :::::: 8080
-[info] | 18-10-2023 21:36:09 => Database connected.
-[info] | 18-10-2023 21:39:05 => Server on port :::::: 8080
-[info] | 18-10-2023 21:39:06 => Database connected.
-[info] | 18-10-2023 21:42:13 => Server on port :::::: 8080
-[info] | 18-10-2023 21:42:14 => Database connected.
-[info] | 18-10-2023 21:42:37 => Server on port :::::: 8080
-[info] | 18-10-2023 21:42:37 => Database connected.
-[info] | 18-10-2023 21:49:23 => Server on port :::::: 8080
-[info] | 18-10-2023 21:49:24 => Database connected.
-[info] | 18-10-2023 21:49:50 => Server on port :::::: 8080
-[info] | 18-10-2023 21:49:51 => Database connected.
-[info] | 18-10-2023 21:50:59 => Server on port :::::: 8080
-[info] | 18-10-2023 21:51:00 => Database connected.
-[info] | 18-10-2023 21:52:22 => Server on port :::::: 8080
-[info] | 18-10-2023 21:52:23 => Database connected.
-[info] | 18-10-2023 21:54:31 => Un usuario está intentando entrar a su cuenta.
-[info] | 18-10-2023 21:54:32 => Usuario logeado con exito.
-[info] | 18-10-2023 22:02:07 => Server on port :::::: 8080
-[info] | 18-10-2023 22:02:08 => Database connected.
-[info] | 18-10-2023 22:16:00 => Server on port :::::: 8080
-[info] | 18-10-2023 22:16:01 => Database connected.
-[info] | 18-10-2023 22:16:03 => Un usuario está intentando entrar a su cuenta.
-[info] | 18-10-2023 22:16:03 => Usuario logeado con exito.
-[info] | 18-10-2023 22:48:39 => Server on port :::::: 8080
-[info] | 18-10-2023 22:48:40 => Database connected.
-[info] | 18-10-2023 22:51:36 => Server on port :::::: 8080
-[info] | 18-10-2023 22:51:37 => Database connected.
-[info] | 18-10-2023 22:53:03 => Server on port :::::: 8080
-[info] | 18-10-2023 22:53:04 => Database connected.
-[info] | 18-10-2023 22:55:35 => Server on port :::::: 8080
-[info] | 18-10-2023 22:55:36 => Database connected.
-[info] | 18-10-2023 22:56:19 => Server on port :::::: 8080
-[info] | 18-10-2023 22:56:21 => Database connected.
+[info] | 25-10-2023 11:26:28 => Server on port :::::: 8080
+[info] | 25-10-2023 11:26:29 => Database connected.
+[info] | 25-10-2023 11:51:30 => Un usuario está intentando entrar a su cuenta.
+[info] | 25-10-2023 11:51:30 => Usuario logeado con exito.
+[info] | 25-10-2023 11:54:13 => Carrito 6512df40990a1622de2490eb obtenido.
+[info] | 25-10-2023 17:29:52 => Un usuario está intentando entrar a su cuenta.
+[info] | 25-10-2023 17:29:52 => Usuario logeado con exito.
+[info] | 25-10-2023 17:29:56 => Carrito 65397ac3edc7478632044340 creado.
+[info] | 25-10-2023 18:32:12 => Un usuario está intentando entrar a su cuenta.
+[info] | 25-10-2023 18:32:13 => Usuario logeado con exito.
+[info] | 25-10-2023 18:37:34 => Se ha agregado el producto 653064047ba6a074c7f60503 al carrito 6512df40990a1622de2490eb
+[info] | 25-10-2023 18:40:17 => Se ha agregado el producto 653064047ba6a074c7f60503 al carrito 6512df40990a1622de2490eb
+[info] | 25-10-2023 19:01:19 => Un usuario está intentando entrar a su cuenta.
+[info] | 25-10-2023 19:01:19 => Usuario logeado con exito.
+[info] | 25-10-2023 19:07:57 => {
+  _id: new ObjectId("6512df40990a1622de2490ed"),
+  name: 'Gaston Firpo',
+  email: 'medicenfirpito@gmail.com',
+  password: '$2b$10$1IM3HfLiKa.Z8yFSQAIiT.fXGx4BbftjPfyzVoWtFpE/PfEcogz4K',
+  role: 'user',
+  isGithub: false,
+  isGoogle: false,
+  cartID: new ObjectId("6512df40990a1622de2490eb"),
+  __v: 0,
+  premium: true
+}
+[info] | 25-10-2023 19:41:30 => null
+[info] | 25-10-2023 19:46:06 => Un usuario está intentando entrar a su cuenta.
+[info] | 25-10-2023 19:46:06 => Usuario logeado con exito.
+[info] | 25-10-2023 19:53:22 => Server on port :::::: 8080
+[info] | 25-10-2023 19:53:23 => Database connected.
+[info] | 25-10-2023 19:54:55 => Server on port :::::: 8080
+[info] | 25-10-2023 19:54:56 => Database connected.
+[info] | 25-10-2023 19:55:49 => Server on port :::::: 8080
+[info] | 25-10-2023 19:55:50 => Database connected.
+[info] | 25-10-2023 20:09:40 => Server on port :::::: 8080
+[info] | 25-10-2023 20:09:41 => Database connected.
+[info] | 25-10-2023 20:21:24 => Server on port :::::: 8080
+[info] | 25-10-2023 20:21:25 => Database connected.
+[info] | 25-10-2023 20:21:55 => Server on port :::::: 8080
+[info] | 25-10-2023 20:21:56 => Database connected.
+[info] | 25-10-2023 20:30:01 => Server on port :::::: 8080
+[info] | 25-10-2023 20:30:02 => Database connected.

@@ -134,3 +134,301 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schema/Product/serverError'
+  /api/cart:
+    post:
+      tags: 
+      - Carrito
+      summary: Crear carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Cart'
+      responses:
+        200:
+          description: Carrito creado con exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/create'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/serverError'
+  /api/cart/{id}:
+    get:
+      tags: 
+      - Carrito
+      summary: Obtener carrito por ID unico
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Cart'
+      responses:
+        200:
+          description: Carrito obtenido con exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/getByID'
+        404:
+          description: No existe un carrito con ese ID
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/notFound'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/serverError'
+    put:
+      tags: 
+      - Carrito
+      summary: Actualizar articulos del carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Cart'
+      responses:
+        200:
+          description: Carrito modificado con exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/updateCart'
+        404:
+          description: No existe un carrito con ese ID
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/notFound'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/serverError'
+  /api/cart/{id}/product/{id}:
+    post:
+      tags: 
+      - Carrito
+      summary: Agregar producto a carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Cart'
+      responses:
+        200:
+          description: Producto agregado con exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/addProduct'
+        404:
+          description: No existe un carrito o producto con ese ID
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/notFoundAddProduct'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/serverError'
+    put:
+      tags: 
+      - Carrito
+      summary: Actualizar cantidad de un producto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Cart'
+      responses:
+        200:
+          description: Cantidad actualizada con exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/updateQuantity'
+        404:
+          description: No existe un carrito o producto con ese ID
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/notFoundAddProduct'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/serverError'
+    delete:
+      tags: 
+      - Carrito
+      summary: Eliminar un producto del carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Cart'
+      responses:
+        200:
+          description: Producto eliminado por exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/removeProduct'
+        404:
+          description: No existe un carrito o producto con ese ID
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/notFoundAddProduct'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/serverError'
+  /api/cart/purchase:
+    get:
+      tags: 
+      - Carrito
+      summary: Realizar compra
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/Cart'
+      responses:
+        200:
+          description: Compra realizada con exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/purchase'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Cart/serverError'
+  /api/user/current:
+    get:
+      tags: 
+      - Usuario
+      summary: Obtener usuario actual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/User'
+      responses:
+        200:
+          description: Datos obtenidos con exito
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/getCurrent'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/serverError'
+  /api/user/premium/{id}:
+    get:
+      tags: 
+      - Usuario
+      summary: Asignar premium a un usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/User'
+      responses:
+        200:
+          description: Nuevo usuario premium
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/setPremium'
+        404:
+          description: No hay nungun usuario con ese ID
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/notFound'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/serverError'
+  /api/user/mail/password:
+    post:
+      tags: 
+      - Usuario
+      summary: Enviar mail para restablecer contraseña
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/User'
+      responses:
+        200:
+          description: Mail enviado
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/resetPasswordMail'
+        404:
+          description: No hay nungun usuario con ese email
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/notFoundMail'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/serverError'
+  /api/user/updatePassword:
+    post:
+      tags: 
+      - Usuario
+      summary: Restablecer contraseña
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/User'
+      responses:
+        200:
+          description: Contraseña restablecida
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/updatePassword'
+        403:
+          description: No hay nungun usuario con ese email
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/forbidden'
+        500:
+          description: Error del servidor.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/serverError'

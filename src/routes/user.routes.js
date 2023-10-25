@@ -15,6 +15,6 @@ router.post('/login', notLoggedIn, passport.authenticate('login'), logged)
       .get('/current', loggedIn, getCurrent)
       .get('/premium/:id', setPremium)
       .post('/mail/password', resetPasswordMail)
-      .get('/updatePassword', checkLink, updatePassword)
+      .post('/updatePassword', checkLink, updatePassword)
 
 module.exports = router;

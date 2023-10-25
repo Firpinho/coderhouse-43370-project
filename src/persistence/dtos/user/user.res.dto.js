@@ -3,7 +3,8 @@ class UserResDTO {
         this.nombre = user.name
         this.email = user.email
         this.tipo = user.role
-        this.premium= user.premium
+        this.premium = user.premium
+        this.carrito = user.cartID
     }
 }
 
