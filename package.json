@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node . mongo",
     "dev": "nodemon . mongo",
-    "test": "mocha ./src/test/productos.test.js"
+    "test:unit:productos": "mocha ./src/test/productos.test.js",
+    "test:unit:carritos": "mocha ./src/test/carritos.test.js",
+    "test:unit:sessions": "mocha ./src/test/usuarios.test.js"
   },
   "author": "",
   "license": "ISC",

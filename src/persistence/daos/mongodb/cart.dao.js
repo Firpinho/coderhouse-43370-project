@@ -13,7 +13,7 @@ class CartDao extends MongoDBDao {
     async addProduct(cid, pid) {
         const cart = await this.model.findById(cid);
         const exists = cart.products.some((product) => product.product.toString() === pid)
-
+        
         if(!exists) cart.products.push({product: pid});
         else cart.products.find((product) => { if(product.product.toString() === pid) product.quantity++ })
 

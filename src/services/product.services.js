@@ -70,7 +70,6 @@ const create = async (obj) => {
 
 const update = async (id, obj) => {
   try {
-    console.log(obj);
     return await ProductDao.update(id, obj);
   } catch (error) {
     return error;
