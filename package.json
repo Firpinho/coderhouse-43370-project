@@ -6,9 +6,10 @@
   "scripts": {
     "start": "node . mongo",
     "dev": "nodemon . mongo",
-    "test:unit:productos": "mocha ./src/test/productos.test.js",
-    "test:unit:carritos": "mocha ./src/test/carritos.test.js",
-    "test:unit:sessions": "mocha ./src/test/usuarios.test.js"
+    "test:unit:productos": "mocha ./src/test/dao/productos.test.js",
+    "test:unit:carritos": "mocha ./src/test/dao/carritos.test.js",
+    "test:unit:sessions": "mocha ./src/test/dao/usuarios.test.js",
+    "test:win": "set NODE_OPTIONS=--experimental-vm-modules && npx jest /src/test/app/app.test.js"
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +35,7 @@
     "passport-github2": "^0.1.12",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
+    "supertest": "^6.3.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "winston": "^3.10.0"

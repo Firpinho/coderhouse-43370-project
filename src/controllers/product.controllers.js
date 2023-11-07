@@ -1,5 +1,6 @@
 const productServices = require('../services/product.services');
 const HttpResponse = require('../utils/http.response')
+const config = require('../config')
 const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR, PRODUCT_MOCK_ERROR, PRODUCT_REMOVE_UNAUTH } = require('../utils/errors.dictionary')
 const logger = require('../utils/log.config')
 
@@ -34,7 +35,11 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
     try {
-        const isPremium = (req.user.premium) ? true : false;
+
+        let isPremium
+
+        if (config.NODE_ENV !== 'test' ) { isPremium = (req.user.premium) ? true : false};
+        
         const newProduct = req.body;
 
         if (isPremium) newProduct.owner = req.user._id 
@@ -42,7 +47,9 @@ const create = async (req, res, next) => {
 
         const createdProduct = await productServices.create(newProduct);
 
-        if (createdProduct) return httpResponse.OK(res, createdProduct);  
+        if (createdProduct) {
+            return httpResponse.OK(res, createdProduct)
+        }  
         else return httpResponse.INTERNAL_SERVER_ERROR(res, CREATE_PRODUCT_ERROR);
     } catch (error) {
         next(error)

@@ -1,7 +1,7 @@
 const { expect } = require("chai");
-const {init} = require('../persistence/daos/mongodb/connection')
+const {init} = require('../../persistence/daos/mongodb/connection')
 const mongoose = require("mongoose");
-const mongoProductDao = require("../persistence/daos/mongodb/product.dao");
+const mongoProductDao = require("../../persistence/daos/mongodb/product.dao");
 
 const productDao = new mongoProductDao();
 
@@ -13,11 +13,11 @@ describe("Tests unitarios: DAO de productos", () => {
     console.log("Coleccion productos limpia");
   });
 
-  after(async () => {
+   after(async () => {
     console.log("Pruebas terminadas limiando colecciones...");
     await mongoose.connection.collections["products"].drop();
     console.log("Colecciones vacias :)");
-  });
+  }); 
   /**
    * GET ALL
    */

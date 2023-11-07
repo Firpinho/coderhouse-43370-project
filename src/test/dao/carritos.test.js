@@ -1,9 +1,9 @@
 const { expect } = require("chai");
-const { init } = require("../persistence/daos/mongodb/connection");
+const { init } = require("../../persistence/daos/mongodb/connection");
 const mongoose = require("mongoose");
-const mongoCartDao = require("../persistence/daos/mongodb/cart.dao");
-const mongoProductDao = require("../persistence/daos/mongodb/product.dao");
-const logger = require("../utils/log.config");
+const mongoCartDao = require("../../persistence/daos/mongodb/cart.dao");
+const mongoProductDao = require("../../persistence/daos/mongodb/product.dao");
+const logger = require("../../utils/log.config");
 
 const cartDao = new mongoCartDao();
 const productDao = new mongoProductDao();

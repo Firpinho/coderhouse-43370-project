@@ -3,7 +3,6 @@ const { loggedIn } = require("../middlewares/loggedIn");
 
 const HttpResponse = require("../utils/http.response");
 const logger = require("../utils/log.config");
-const { transport } = require("winston");
 
 
 
@@ -13,8 +12,7 @@ const httpResponse = new HttpResponse();
 
 const logged = async (req, res, next) => {
   try {
-    if (loggedIn) res.status(200).redirect("http://localhost:8080/");
-    else res.status(400).redirect("http://localhost:8080/login");
+    if (loggedIn) res.status(200).json(req.user);
   } catch (error) {
     next(error.message);
   }
@@ -23,7 +21,7 @@ const logged = async (req, res, next) => {
 const logout = async (req, res, next) => {
   try {
     req.session.destroy();
-    res.redirect("/login");
+    res.status(200).json({message:'logged out'})
   } catch (error) {
     next(error);
   }
@@ -41,7 +39,7 @@ const getCurrent = async (req, res, next) => {
 const setPremium = async (req, res, next) => {
   try {
     const user = await userServices.setPremium(req.params.id);
-    logger.info(user);
+    logger.info('Nuevo usuario premium');
     res.status(200).json(user);
   } catch (error) {
     next(error);

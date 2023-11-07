@@ -6,16 +6,16 @@ let connection_string;
 
 switch (config.NODE_ENV) {
   case "dev":
-        connection_string = config.MONGO_LOCAL
+        connection_string = config.MONGO_ATLAS
     break;
   case "prod":
         connection_string = config.MONGO_ATLAS
     break;
   case "test" :
-        connection_string = config.MONGO_LOCAL
+        connection_string = config.MONGO_ATLAS
     break
   default:
-        connection_string = config.MONGO_LOCAL
+        connection_string = config.MONGO_ATLAS
     break;
 }
 

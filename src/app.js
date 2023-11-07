@@ -63,3 +63,6 @@ app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
 app.listen(PORT, logger.info(`Server on port :::::: ${PORT}`));
+
+
+module.exports = app
