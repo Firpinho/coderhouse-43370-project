@@ -1,0 +1,19 @@
+config: 
+  target: 'http://localhost:8080'
+  phases:
+    - duration: 15
+      arrivalRate: 250
+      name: Warm up
+  payload:
+    path: 'keys.txt'
+    fields: 
+      - 'id'
+scenarios:
+  - name: 'Search all products'
+    flow: 
+      - get:
+          url: '/api/products'
+      - think: 5
+      - get:
+          url: '/api/products/{{id}}'
+            

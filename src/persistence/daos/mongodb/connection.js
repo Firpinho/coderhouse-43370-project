@@ -24,7 +24,7 @@ module.exports = {
     try {
       await mongoose
         .connect(connection_string)
-        .then(() => logger.info("Database connected."))
+        .then(() => logger.info(`Database connected | PID - ${process.pid}`))
         .catch(() =>
           logger.error("Error al conectar con la base de datos.")
         );
