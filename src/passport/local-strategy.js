@@ -17,6 +17,7 @@ const login = async (req, email, password, done) => {
         if(!user) return done(null, false);
         if(validatePassword(user, password)) {
             logger.info('Usuario logeado con exito.')
+            await UserDao.update(user.id, {last_online: new Date()})
             return done(null, user)
         }
         else {

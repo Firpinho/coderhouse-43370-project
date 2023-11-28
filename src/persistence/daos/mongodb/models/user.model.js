@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
     isGoogle: {type: Boolean, required: true, default: false},
     cartID: {type: mongoose.Schema.Types.ObjectId, required: true},
     premium: {type: Boolean, required: true, default: false},
+    last_online: {type: Date, required: true, default: new Date()}
 })
 
 module.exports = { UserModel : mongoose.model('users', userSchema)}

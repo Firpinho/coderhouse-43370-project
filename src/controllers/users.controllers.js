@@ -36,6 +36,16 @@ const getCurrent = async (req, res, next) => {
   }
 };
 
+const getAll = async (req, res, next) => {
+  try {
+    const user = await userServices.getAll();
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 const setPremium = async (req, res, next) => {
   try {
     const user = await userServices.setPremium(req.params.id);
@@ -73,11 +83,23 @@ const updatePassword = async (req, res, next) => {
   }
 }
 
+const deleteInactiveUsers = async (req, res, next) => {
+  try { 
+    userServices.deleteInactiveUsers();
+    return httpResponse.OK(res, 'Usuarios inactivos eliminados');
+  } catch (error) {
+    next(error)
+  }
+}
+
+
 module.exports = {
   logged,
   logout,
   getCurrent,
   setPremium,
   resetPasswordMail,
-  updatePassword
+  updatePassword,
+  getAll,
+  deleteInactiveUsers
 };

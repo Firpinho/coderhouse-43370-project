@@ -4,13 +4,21 @@ const {generateToken} = require("../utils/token.generator")
 const { send } = require("../services/email.services");
 const logger = require('../utils/log.config');
 const { createHash, validatePassword } = require('../utils/password-protect');
-const { getById } = require('./product.services');
+const ActiveUser = require('../utils/inactiveUsers.helper')
 
 const userRepository = new UserRepository();
 
 const getByEmail = async (email) => {
     try {
         return UserDao.getByEmail(email);
+    } catch (error) {
+        return error
+    }
+}
+
+const getAll = async () => {
+    try {
+        return await userRepository.getAllUsersDTO();
     } catch (error) {
         return error
     }
@@ -51,10 +59,25 @@ const updatePassword = async (userID, newPassword) => {
     }
 }
 
+
+const deleteInactiveUsers = async () => {
+    const users = await userRepository.getAllUsersDTO();
+    users.forEach(async user => {
+        if(!ActiveUser(user.ultima_conexion)){
+            const result = await UserDao.getByEmail(user.email);
+            const deletedUser = await UserDao.delete(result._id);
+            send(deletedUser.email, 'Usuario eliminado', 'Tu usuario ha sido eliminado por inactividad.')
+            if(deletedUser) logger.warn('User '+deletedUser._id+' DELETED reason: Inactivity');
+        }
+    });
+}
+
 module.exports = {
     getByEmail,
     getCurrent,
     setPremium,
     resetPassword,
-    updatePassword
+    updatePassword,
+    getAll,
+    deleteInactiveUsers
 }

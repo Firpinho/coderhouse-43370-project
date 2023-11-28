@@ -6,6 +6,14 @@ class UserDao extends MongoDBDao {
         super(Model)
     }
 
+    async getAllUsers() {
+        try {
+            return await this.model.find({});
+        } catch (error) {
+            return error
+        }
+    }
+
     async getByEmail(email) {
         try {
             return await this.model.findOne({email: email});

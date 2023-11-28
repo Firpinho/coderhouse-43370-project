@@ -1,8 +1,10 @@
 const productServices = require('../services/product.services');
+const userServices = require('../services/user.services');
 const HttpResponse = require('../utils/http.response')
 const config = require('../config')
 const { GET_ALL_PRODUCTS_ERROR, GET_PRODUCT_ERROR, CREATE_PRODUCT_ERROR, UPDATE_PRODUCT_ERROR, REMOVE_PRODUCT_ERROR, PRODUCT_MOCK_ERROR, PRODUCT_REMOVE_UNAUTH } = require('../utils/errors.dictionary')
 const logger = require('../utils/log.config')
+const {send} = require('../services/email.services')
 
 
 const httpResponse = new HttpResponse()
@@ -75,8 +77,11 @@ const remove = async (req, res, next) => {
 
         if(isPremium) {
             const product = await productServices.getById(id);
-            const prouctOwner =  product.owner;
+            const prouctOwner = product.owner;
             if(prouctOwner !== req.user._id.toString()) return httpResponse.UNAUTHORIZED(res, PRODUCT_REMOVE_UNAUTH)
+
+            const ownerUser = await userServices.getCurrent(product.owner);
+            send(ownerUser.email, 'Producto eliminado', `Producto : ${product._id} - ${product.name} - ${product.code}`)
         }
 
         const deletedProduct = await productServices.remove(id);

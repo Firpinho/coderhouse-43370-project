@@ -5,6 +5,7 @@ class UserResDTO {
         this.tipo = user.role
         this.premium = user.premium
         this.carrito = user.cartID
+        this.ultima_conexion = user.last_online
     }
 }
 
